@@ -1,0 +1,77 @@
+% Questions on PDF page 134
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{textcomp}
+
+\graphicspath{{./figures}}
+
+\title{Physical Climatology (AES 630) Homework 6 and 7}
+\author{Mitchell Dodson}
+\date{November 3, 2023}
+
+\newcommand*{\problem}[2]{
+    \begin{table}[ht]
+    \centering
+        \begin{tabular}{ | p{.1\linewidth} p{.9\linewidth} | }
+            \hline
+            \vspace{.3em}\textbf{\large#1:} & \vspace{.3em}\small{#2}\hspace{.2em}\vspace{.5em} \\ \hline
+        \end{tabular}
+    \end{table}
+}
+
+\begin{document}
+
+\maketitle
+
+\problem{10.3}{
+    If the equilibrium is defined by $T_s = T_e \, \sqrt[4]{N+1}$ (from Section 3.8), then what is the sensitivity parameter $\lambda_R$ in Eq. 10.6 ($dT_s = \lambda_R dQ$)? First derive a formula, then compute a numerical value for $N=3$; Compare with Eq. 10.7 and explain the difference.
+} % lambda = (N+1)^{1/4} / (4 sigma T_e^3)
+
+\begin{equation}\label{q1}
+    \begin{split}
+        \frac{dT_s}{dQ} &= \lambda_R \\
+        Q_{abs} &= \frac{S_0}{4} (1-\alpha_p) \\
+        &= \sigma T_e^4 \\
+        T_s &= T_e\sqrt[4]{N+1} \\
+        \frac{dT_s}{dQ} &= \frac{1}{4} \left(\frac{Q(N+1)}{\sigma}\right)^{-\frac{3}{4}} \left(\frac{N+1}{\sigma}\right) \\
+        &= \frac{1}{4} Q^{-\frac{3}{4}} \sqrt[4]{\frac{N+1}{\sigma}} \\
+        &= \frac{1}{4} (\sigma T_e^4)^{-\frac{3}{4}} \sqrt[4]{\frac{N+1}{\sigma}} \\
+        &= \frac{1}{4} \sigma^{-\frac{3}{4}} T_e^{-3} \sqrt[4]{\frac{N+1}{\sigma}} \\
+        &= \frac{1}{4} \frac{\sqrt[4]{N+1}}{\sigma T_e^3} = \lambda_R \\
+        \lambda_R(N=3) &= \frac{\sqrt{2}}{2} \frac{1}{\sigma T_e^3} \\
+    \end{split}
+\end{equation}
+
+Equation \ref{q1} shows the derivation for the climate sensitivity parameter $\lambda_R$ given the $N$-layer model with no atmospheric absorption of shortwave radiation, and total longwave absorption at each layer.
+
+\begin{equation}\label{eq10.7}
+    (\lambda_R)_{BB} = \left(\frac{\partial(\sigma T_e^4)}{\partial T_s}\right)^{-1} = (4\sigma T_e^3)^{-1} = 0.26\,\si{K.(W.m^{-2})^{-1}}
+\end{equation}
+
+\problem{10.4}{
+    Assume that transient eddies are the primary heat transport mechanism determining vertical and horizontal potential temperature gradients in mid-latitudes, and that the eddy transports respond to the mean gradients as indicated by Eqs. 10.31 and 10.33.
+    If the radiative forcing of the meridional gradient produces a larger equator-to-pole heating contrast, how will the vertical gradient of potential temperature (static stability) in midlatitudes respond?
+    Will the change in static stability be relatively large or small compared to the change in meridional temperature gradient?
+    Assume that potential temperature is relaxed linearly toward a radiative equilibrium value and that the relaxation rate of vertical and horizontal gradients is the same.
+} % The static stability will increase more than the meridional gradient.
+
+\problem{10.5}{
+    Use the Budyko energy-balance climate model (Eq. 10.23) to solve for the TSI as a function of iceline latitude. Use (10.14) and the parameters $B=1.45\,\si{W.m^{-2}.K^{-1}}$, $a_0 = 0.68$, $b_0 = 0.38$, and $1_2 = 0.0$. Plot the curves for the values $\gamma=3.8\,\si{W.m^{-2}.K^{-1}}$ and $\gamma = 2.8\,\si{W.m^{-2}.K^{-1}}$.
+} %
+
+\end{document}
+
+\begin{figure}[h!]\label{q1q2}
+    \centering
+    \begin{tabular}{ c c c | c}
+    \end{tabular}
+\end{figure}
+

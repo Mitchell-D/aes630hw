@@ -1,0 +1,136 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\graphicspath{{./figures}}
+
+\title{Physical Climatology (AES 630) Homework 2}
+\author{Mitchell Dodson}
+\date{September 11, 2023}
+
+\newcommand*{\problem}[2]{
+    \begin{table}[ht]
+    \centering
+        \begin{tabular}{ | p{.1\linewidth} p{.9\linewidth} | }
+            \hline
+            \vspace{.3em}\textbf{\large#1:} & \vspace{.3em}\small{#2}\hspace{.2em}\vspace{.5em} \\ \hline
+        \end{tabular}
+    \end{table}
+}
+
+\begin{document}
+
+\maketitle
+
+\problem{1.1}{Use the data in Table 2.3 to calculate emission temperatures for all planets. The actual energy emission from Jupiter corresponds to an emission temperature of about $124\,\si{K}$; how must you explain the difference between this temperature and the number you obtain?}
+
+With the following equation, the emission temperature of a planet can be calculated using the mean orbital distance $\bar{d}$ of the planet and its mean albedo $\alpha_p$, given solar luminosity $L_0$.
+
+\begin{figure}[h!]
+    \begin{equation}\label{emit_temp}
+        T_e = \sqrt[4]{\frac{L_0 (1-\alpha_p)}{16\pi \bar{d}^2 \sigma}}
+    \end{equation}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{c | c c c}
+        Planet & Distance ($10^6\,\si{km}$)& Albedo & Emission Temp. (K) \\
+         \hline
+         Mercury & 58 & 0.1 & 437.42 \\
+         Venus & 108 & 0.65 & 253.13 \\
+         Earth & 150 & 0.29 & 256.34 \\
+         Mars & 228 & 0.15 & 217.49 \\
+         Jupiter & 778 & 0.52 & 102.06 \\
+         Saturn & 1430 & 0.47 & 77.17 \\
+         Uranus & 2878 & 0.5 & 53.61 \\
+         Neptune & 4510 & 0.4 & 44.82 \\
+    \end{tabular}
+\end{center}
+
+If the observed emission temperature of Jupiter is $124\,\si{K}$, then it is about $22\,\si{K}$ warmer than expected if solar irradiance is the only source of heat. Either internal processes or non-solar flux must be responsible for the discrepancy. Jupiter is known to have an incredibly powerful magnetic dynamo, which is responsible for bright aurorae at its poles when interacting with solar and interplanetary ion ``winds;'' The consequent upper-atmospheric heating may contribute to the higher observed temperatures. Friction from the gravity-driven internal dynamics of Jupiter may also increase its temperature beyond the energy imparted by the Sun.
+
+\clearpage
+
+\problem{1.2}{Calculate the emission temperature of Earth if the solar luminosity is $30\%$ less; use today's albedo and earth-sun difference.}
+
+Applying Equation \ref{emit_temp} with $L_0' = .7\,L_0 = .7\cdot3.9\times10^{26}\,\si{W} = 2.73\times10^{26}\,\si{W}$
+
+\[
+    T_e = \sqrt[4]{\frac{L_0' (1-\alpha_p)}{16\pi \bar{d}^2 \sigma}} = \sqrt[4]{\frac{2.7\times10^{26}\,\si{W}(1-.29)}{16\pi \times 150\times10^6\,\si{km}^2 \sigma}} = 233.47\,\si{K}
+\]
+
+Thus if the solar luminosity were $30\%$ of its original value, the emission temperature of Earth would decrease from $256.34\,\si{K}$ to $234.47\,\si{K}$.
+
+\problem{1.4}{Using the model in Figure 2.3, calculate the surface temperature if the insolation is absorbed in the atmosphere rather than the surface.}
+
+If all the solar insolation were absorbed in the atmosphere rather than transmitted to the surface, then the observed emission temperature of the planet would equal the emission temperature of the atmosphere, which must be the same as the solar insoaltion assuming an energy balance.
+
+\[
+    \frac{S_0}{4}(1-\alpha_p) = \sigma T^4_E = \sigma T^4_A
+\]
+
+As previously calculated, the emission temperature of Earth $T_E \approx 256.34\,\si{K}$. Since the atmospheric layer is opaque, it is the only source of radiation towards the surface. Thus, $T_{sfc} = T_E = 256.34$ is the surface emission temperature.
+
+\problem{1.7}{A mountain range at $45^\circ N$ is oriented East-West and has a N/S slope faces at $15^\circ$. Calculate the insolation per unit surface area on its South and north Faces at noon on the summer and winter solstices. Compare the differences in insolation between the surfaces in each season with the seasonal variation per-face. Ignore eccentricity and atmospheric absorption.}
+
+Neglecting orbital radius anomaly and atmospheric effects, the surface insolation with latitude $\phi$, declination $\delta$, and surface slope with respect to the normal solar zenith $\psi$ are given by the formula $Q = S_0 cos(\theta_s')$. At noon, the elevation-scaled solar zenith angle is $\theta_s ' = \theta_s + \psi = \phi - \delta + \psi$. The resulting modified surface insolation at the North ($\psi = -15^\circ$) and South ($\psi = 15^\circ$) faces are as follows:
+
+\begin{figure}[h!]
+    \centering
+    \begin{tabular}{c c c c}
+        $\phi$ (deg) & $\delta$ (deg) & $\psi$ (deg) & $Q_{noon}$ $\si{W.m^{-2}}$ \\
+        \hline
+        \hline
+        45 & 23.45 & 15 & 1092.54 \\ % North face, summer
+        45 & -23.45 & 15 & 155.13 \\ % North face, winter
+        \hline
+        45 & 23.45 & -15 & 1351.12 \\ % South face, summer
+        45 & -23.45& -15 & 809.92 \\ % South face, winter
+    \end{tabular}
+    \caption{Solar insolation at Noon. Top: North face in Summer/Winter; Bottom: South face in Summer/Winter.}
+\end{figure}
+
+At the North face, the insolation at Noon during the Winter solstice is only about $14.2\%$ of the insolation on the same surface at the Summer solstice. In contrast, the Winter solstice insolation to the South side is about $60\%$ of the summer insolation. Thus, the North slope experiences a much greater breadth of insolation amounts between seasons. As is to be expected, the South slope insolation is higher on both solstice days, however the North Summer insolation is $80.9\%$ the South Summer insolation, while the North Winter insolation is only $19.2\%$ the South Winter insolation.
+
+\problem{1.8}{If Ringworld's diameter is the same as Earth's orbit, it orbits a star with the same luminosity as the sun, and it has an albedo $A=0.3$, what is the emission temperature of the sunlit side? Consider high-conductance and low-conductance to the opposite side. Explain why the temperature is different than Earth's. What radius would the ribbon need to have in order to reproduce Earth's emission temperature?}
+
+Equation \ref{emit_temp} assumes the ratio of a planet's exposed area to its total surface area is $R = \frac{1}{4}$. Ringworld, however, has half of its surface area fully exposed normal to the star's irradiance (the other half being the opposite side of the ribbon), so with $R$ as the ratio of exposed to total area, Ringworld's emission temperature is modeled by...
+
+\begin{figure}[h!]
+    \begin{equation}\label{emit_temp_rw}
+        T_e = \sqrt[4]{\frac{L_0 R (1-\alpha_p)}{4\pi \bar{d}^2 \sigma}}
+    \end{equation}
+\end{figure}
+
+With $\alpha_p = 0.3$ and assuming high conductance (ie equal thermal emission from both sides, so that $R=\frac{1}{2}$):
+
+\[
+    T_e = \sqrt[4]{\frac{L_0 (.5) (1-.3)}{4\pi \cdot 1.5\times10^{11}\,\si{m}^2 \sigma}} = 303.77\,\si{K}
+\]
+
+If ringworld were a perfect insulator, the ratio of exposed to total (emitting) surface area would be $R=1$. Thus, the emission temperature would be...
+
+\[
+    T_e = \sqrt[4]{\frac{L_0 (1-.3)}{4\pi \cdot 1.5\times10^{11}\,\si{m}^2 \sigma}} = 361.24\,\si{K}
+\]
+
+Aside from a small difference in surface albedo, the emission temperature is different between the two ``planets'' due to the increase in surface area exposed to irradiance with respect to total emitting surface area. In other words, per unit area the average solar zenith angle at any point in time is higher. Setting the interior
+
+\[
+    \frac{R_e (1-\alpha_{e})}{d_e^2} = \frac{R_r (1-\alpha_{r})}{d_r^2} \Rightarrow \frac{.25 (1-.29)}{(1.5\times10^{11})^2} = \frac{1 (1-.3)}{d_r^2}
+\]
+
+\[
+    \Rightarrow d_r = 2.9788\times 10^{11}\,\si{m}
+\]
+
+Thus the non-conducting Ringworld would have to orbit at around $2.9788\times 10^{11}\,\si{m}$ to have the same sun-facing surface emission temperature as Earth.
+
+\end{document}

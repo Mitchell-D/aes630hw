@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\graphicspath{{./figures}}
+
+\title{Physical Climatology (AES 630) Homework 1}
+\author{Mitchell Dodson}
+\date{September 1, 2023}
+
+\newcommand*{\problem}[2]{
+    \begin{table}[ht]
+    \centering
+        \begin{tabular}{ | p{.1\linewidth} p{.9\linewidth} | }
+            \hline
+            \vspace{.3em}\textbf{\large#1:} & \vspace{.3em}\small{#2}\hspace{.2em}\vspace{.5em} \\ \hline
+        \end{tabular}
+    \end{table}
+}
+
+\begin{document}
+
+\maketitle
+
+\problem{1.2}{What fraction of the atmosphere is below you at the peak of Mt. Everest at 8,848m?}
+
+\begin{figure}[h!]
+\begin{equation}\label{integrated-hydrostatic}
+    p(z) = p_{sfc} \exp\left(-\frac{z}{H}\right)
+\end{equation}
+
+\begin{equation}\label{hydrostatic-mass}
+    \int dm = -\int{\frac{dp}{g}} = m_f-m_0 = \frac{p_0-p_f}{g}
+\end{equation}
+\end{figure}
+
+Assuming constant gravity (altitude equals geopotential height), a hydrostatic atmosphere with scale height $H=7.6\,\si{km}$, and surface pressure $p_{sfc}=1013.2$ (at $z=0$), the expected pressure at $z=8.848\,\si{km}$ can be calculated with Equation \ref{integrated-hydrostatic} as follows:
+
+\[
+    p(8.848\,\si{km}) = (1013.2\,\si{hPa}) \exp\left(-\frac{8.848\,\si{km}}{7.6\,\si{km}}\right) = 316.29\,\si{hPa}
+\]
+
+Given the mass-differential form of the hydrostatic equation (\ref{hydrostatic-mass}), we can calculate the fraction of atmospheric mass between $p_{sfc}$ and $p(8.848\,\si{km})$ as the ratio of the mass below Everest $\Delta m_{ev}$ to the entire mass of the atmosphere $\Delta m_{atm}$ (from $p_{sfc}$ to $p=0$).
+
+\[
+    \frac{\Delta m_{ev}}{\Delta m_{atm}} = \frac{g}{g} \frac{p_{sfc}-p_{ev}}{p_{sfc}-0} = 1-\frac{p_{ev}}{p_{sfc}} = 1-\frac{316.29\,\si{hPa}}{1013.2\,\si{hPa}} = .6878
+\]
+
+In other words, about $68.78\%$ of the atmosphere is below the peak of Mt. Everest at $z=8.848\,\si{km}$ and $p=316.29\,\si{hPa}$.
+
+
+\problem{1.3}{Using global averages, what is the temperature ($^\circ \si{C}$) and pressure ($hPa$) at $10,000m$ above sea level?}
+
+Equation \ref{integrated-hydrostatic} is the hydrostatic equation integrated with the 1st law of thermodynamics from sea level pressure $p=1013.2\,\si{hPa}$ to $p=0\,\si{hPa}$, using a global mean atmospheric temperature of $\frac{Hg}{R} = \bar{T}_{atm} \approx 259.51$. With this equation we can approximate mean global pressure at $z=10\,\si{km}$ such that:
+
+\[
+    p(10\,\si{km}) = (1013.2\,\si{hPa})\exp\left(-\frac{10\,\si{km}}{7.6\,\si{km}}\right) \approx 271.8\,\si{hPa}
+\]
+
+Furthermore, assuming the atmosphere follows an adiabatic lapse rate (in other words, parcels don't undergo a moisture phase transition) the temperature will decrease at an average rate of $\Gamma_a = 9.8\,\si{K.km^{-1}}$. Then with an average sea-level temperature of $288\,\si{K}$, the temperature at $z=10\,\si{km}$ is expected to be:
+
+\[
+    T(10\,\si{km}) = -7.6\,\si{K.km^{-1}}(10\,\si{km}) + 288\,\si{K} = 212K
+\]
+
+Thus at $10\,\si{km}$ altitude, the global average mean pressure is approximately $271.8\,\si{hPa}$ and the mean temperature is $212\,\si{K}$.
+
+\problem{1.4}{If the atmosphere were warmed by $5^\circ \si{C}$, by how much would mean atmospheric pressure at $5,000m$ change?}
+
+Under normal circumstances, the scale height is around $H=7.6\,\si{K.km^{-1}}$, which corresponds to a mean atmospheric temperature of $259.51\,\si{K}$. With these conditions, we find that the expected mean pressure at 5km is:
+
+\[
+    p(5\,\si{km}) = (1013.2\,\si{hPa})\exp\left(-\frac{5\,\si{km}}{7.6\,\si{km}}\right) = 524.78\,\si{hPa}
+\]
+
+If the mean atmospheric temperature were increased by $5^\circ \si{C}$, to $264.51$, the scale height for atmospheric pressure would increase to:
+
+\[
+    H = \frac{287\,\si{J.kg^{-1}.K^{-1}} \times 264.51\,\si{K}}{9.8\,\si{m.s^{-2}}} = 7.746\,\si{K.km^{-1}}
+\]
+
+Since atmospheric pressure is directly proportional to column mass, and no additional mass has been added, we can assume that the surface pressure is still $P_{sfc}=1013.2\,\si{hPa}$. With the new scale height, the mean atmospheric pressure at $z=5\,\si{km}$ is determined using Equation \ref{integrated-hydrostatic}:
+
+\[
+    p(5\,\si{km}) = (1013.2\,\si{hPa})\exp\left(-\frac{5\,\si{km}}{7.746\,\si{km}}\right) = 531.32\,\si{hPa}
+\]
+
+Thus a $5^\circ \si{C}$ change in mean atmospheric temperature would result in a $6.53\,\si{hPa}$ increase in pressure at $z=5\,\si{km}$, which reflects the thermal expansion of pressure layers in the warmer atmosphere.
+
+\newpage
+
+\problem{1.5}{Compute the difference in saturation vapor pressure at $0^\circ \si{C}$ and $30^\circ \si{C}$ and compare results between Clausius-Clapeyron equation forms.}
+
+\begin{figure}[h!]
+    \begin{equation}\label{cc-approx-theory}
+        \frac{de_s}{e_s} \approx \left(\frac{L_v}{R_vT}\right)\frac{dT}{T} = r\frac{dT}{T}
+    \end{equation}
+
+    \begin{equation}\label{cc-empirical}
+        e_s \approx 6.11\exp\left[\frac{L_v}{R_v}\left(\frac{1}{273}-\frac{1}{T}\right)\right]
+    \end{equation}
+
+    \caption{Simplified theoretical (\ref{cc-approx-theory}) and empirical (\ref{cc-empirical}) approximate forms of the Clausius Clapeyron equation from \textit{Global Physical Climatology} Section 1.5 (Hartmann, 2016)}
+\end{figure}
+
+Equation \ref{cc-approx-theory} is a simplification of the Clausius-Clapeyron equation. By assuming that latent heat of vaporization $L_v$ and one of the temperature factors are constant, the approximation can be solved analytically as follows:
+
+\[
+    \frac{de_s}{e_s} = r\frac{dT}{T} \rightarrow \int\frac{de_s}{e_s} = r\int\frac{dT}{T} \rightarrow \ln\left(\frac{e_{sf}}{e_{s0}}\right) = \ln\left(\frac{T_{f}}{T_{0}}\right) \rightarrow \boxed{e_{sf} = e_{s0} \left(\frac{T_f}{T_0}\right)^r}
+\]
+
+Where $r := \frac{L_v}{R_v\bar{T}}$; $R_v=461.50\,\si{J.kg^{-1}.K^{-1}}$ is the gas constant for water vapor, and $\bar{T}$ is the mean temperature. In reality, $L_v$ depends on temperature as modeled by the empirical formula $L_v = (2.501-0.00237T)\times 10^6\,\si{J.kg^{-1}}$ with temperature in $^\circ\si{C}$ (Bolton, 1980). Then with mean temperature $\frac{1}{2}(30-0) = 15\,^\circ\si{C}$, the $r$ constant is:
+
+\[
+    r = \frac{\left(2.501-0.00237\times15\right)\times10^6\,\si{J.kg^{-1}}}{(461.5\,\si{J.kg^{-1}.K^{-1}})(288.2\,\si{K})} = 19.29
+\]
+
+The saturation vapor pressure of water at standard pressure and $0\,^\circ\si{C}$ is a well-known value $e_s(0\,^\circ\si{C}) \approx 6.112\,\si{hPa}$. Then proceeding to solve for the saturation vapor pressure at $T = 30\,^\circ\si{C}$:
+
+\[
+    e_{sf} = e_{s0} \left(\frac{T_f}{T_0}\right)^r = (6.112\,\si{hPa})\left(\frac{303.2\,\si{K}}{273.2\,\si{K}}\right)^{19.29} = 45.607\,\si{hPa}
+\]
+
+Equation \ref{cc-empirical} is an integrated version of the Clausius-Clapeyron relation which holds $L_v$ constant but doesn't hold one of the $T^{-1}$ factors constant. Here, an empirical value is given for $e_s(0\,^\circ\si{C}) = 6.11\,\si{hPa}$. With this formula and the same $L_v$ estimate as before, the expected saturated vapor pressure at $T=30\,^\circ\si{C}$ is:
+
+\[
+    e_{s}(30\,^\circ\si{C}) = 6.11\,\si{hPa} \exp \left[\frac{2.46545\times10^6\,\si{J.kg^{-1}}}{461.5\,\si{J.kg^{-1}.K^{-1}}}\left(\frac{1}{273\,\si{K}}-\frac{1}{303.2\,\si{K}}\right)\right] = 42.412\,\si{hPa}
+\]
+
+Ultimately, Equations \ref{cc-approx-theory} and \ref{cc-empirical} both use the saturation vapor pressure near $T=0\,^\circ\si{C}$ as a reference point for estimating $e_s$ at other temperatures. With the same constant $L_v$ value, Equation \ref{cc-approx-theory}'s estimate at $T=30\,^\circ\si{C}$ is about $3.2\,\si{hPa}$ higher than the estimate from Equation \ref{cc-empirical}.
+
+\problem{1.7}{Why is ocean salinity much lower at $45^\circ$N,$180^\circ$E than at $25^\circ$N,$180^\circ$E?}
+
+$25^\circ$N is near the zonal region known as the ``horse latitudes,'' which mark an area of generally high pressure as air from the Hadley and Ferrel cells converge in the upper atmosphere and subside. This corresponds to clearer skies, and subsequently to high evaporation rates with low precipitation. Removal of fresh water from the ocean system in these latitudes by evaporation shifts the balance towards higher salinity.
+
+In contrast, the $45^\circ$N zone is near the ``polar front,'' which suggests high precipitation and turbulence due to lifting from low-level convergence of the Polar and Ferrel cells. As such, precipitation will consistently replenish fresh water in ocean regions near the polar boundary, which decreases ocean salinity. Even in clear-sky conditions, evaporation rates will be generally lower in the higher latitudes due to weaker solar irradiance.
+
+\end{document}

@@ -1,0 +1,213 @@
+% Questions on PDF page 134
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\graphicspath{{./figures}}
+
+\title{Physical Climatology (AES 630) Homework 4}
+\author{Mitchell Dodson}
+\date{October 8, 2023}
+
+\newcommand*{\problem}[2]{
+    \begin{table}[ht]
+    \centering
+        \begin{tabular}{ | p{.1\linewidth} p{.9\linewidth} | }
+            \hline
+            \vspace{.3em}\textbf{\large#1:} & \vspace{.3em}\small{#2}\hspace{.2em}\vspace{.5em} \\ \hline
+        \end{tabular}
+    \end{table}
+}
+
+\begin{document}
+
+\maketitle
+
+
+\problem{4.1}{
+    If the top $100\,\si{m}$ of ocean warms by $5^\circ\si{C}$ during a 3-month summer, what is the average rate of net energy going into the ocean in $\si{W.m^{-2}}$?
+    If the atmosphere warms by $20\,^\circ\si{C}$ over the same time, what is the rate of energy flux into the atmosphere?
+    }% ANS: 270 Wm-2 , 26 Wm-2
+
+\begin{equation}\label{q1_atmo_heat_cap}
+    \begin{split}
+        \bar{C}_A &= c_p p_s g^{-1} = \frac{1,004\,\si{J.K^{-1}.kg^{-1}}\cdot 101,320\,\si{Pa}}{9.81\,\si{m.s^{-2}}} \\
+        &=\num{1.037e7}\,\si{J.K^{-1}.m^{-2}}
+    \end{split}
+\end{equation}
+\begin{equation}\label{q1_ocean_heat_cap}
+    \begin{split}
+        \bar{C}_O &= \rho_w c_w d_w = 10^3\,\si{kg.m^{-3}} \cdot 4,218\,\si{J.kg^{-1}.K^{-1}} \cdot d_w \\
+        &= d_w \cdot \num{4.218e6}\,\si{J.K^{-1}.m^{-3}}
+    \end{split}
+\end{equation}
+
+Equations \ref{q1_atmo_heat_cap} and \ref{q1_ocean_heat_cap} model the average specific heat capacity of the entire atmosphere, and the volumetric thermal capacity of the first $d_w$ meters in depth of the ocean.
+
+The summer months (June, July, and August) have (30, 31, 31) days respectively, so the time period consists of $\Delta t = (30+31+31)\cdot 24 \cdot 60 \cdot 60 = 7,948,800\,\si{s}$.
+
+\begin{equation}\label{q1_atmo_rate}
+    F_A = \frac{\bar{C}_A\,\Delta T}{\Delta t} = \frac{\num{1.037e7}\,\si{J.K^{-1}.m^{-2}}\,20\cdot\si{K}}{\num{7.9488e6}\,\si{s}} = 26\,\si{W.m^{-2}}
+\end{equation}
+
+\begin{equation}\label{q1_ocean_rate}
+    F_O = \frac{\bar{C}_O\,\Delta T\,d_w}{\Delta t} = \frac{\num{4.218e6}\,\si{J.K^{-1}.m^{-3}}\cdot 5\,\si{K}\cdot 100\,\si{m}}{\num{7.9488e6}\,\si{s}} = 265.32\,\si{W.m^{-2}}
+\end{equation}
+
+The mean heating contributed to the atmosphere during the 3-month season is modeled by Equation \ref{q1_atmo_rate}, and Equation \ref{q1_ocean_rate} shows the mean heating of the ocean surface down to depth $d_w= 100\,\si{m}$. Although the above value $F_O = 265.32\,\si{W.m^{-2}}$ doesn't match the texbook's reported value of $F_O = 270\,\si{W.m^{-2}}$, assuming that all three months have 30 days returns the expected value of $~270\,\si{W.m^{-2}}$
+
+\clearpage
+
+\problem{4.4}{
+    The surface blackbody emission can be linearized with respect to reference temperature $T_0$, $\sigma T_s^4 \approx \sigma T_0^4 + 4\sigma T_0^3(T_s - T_))+\cdots$.
+    Similarly, the sensible surface cooling can be approximated $SH \approx c_p \rho C_D | u | (T_s - T_a)+\cdots$.
+    Calculate and compare longwave emission and sensible heat flux rates of change wrt constant $T_s$ given:
+    $T_0 = 288\,\si{K}$, $\rho = 1.2\,\si{kg.m^{-3}}$, $c_p = 1004\,\si{J.kg^{-1}K^{-1}}$,  $C_D = \num{2e-3}$, $|u| = 5\,\si{m.s^{-1}}$.
+    }% ANS: LW: 5.4 Wm-2K-1 , SH: 12 Wm-2K-1
+
+\begin{equation}\label{q4_semis}
+    \begin{split}
+        \sigma T_s^4 &\approx F^{\uparrow s} := \sigma T_0^4 + 4\sigma T_0^3 (T_s - T_0) + \cdots \\
+        \frac{dF^{\uparrow s}}{d T_s} &= 4\sigma T_0^3 = 4\sigma\cdot(288\,\si{K})^3 = 5.4182\,\si{W.m^{-2}.K^{-1}} \\
+    \end{split}
+\end{equation}
+
+\begin{equation}\label{q4_sshf}
+    \begin{split}
+        SH &\approx c_p \, \rho \, C_D \, |u| \, (T_s - T_a) + \cdots \\
+        \frac{d SH}{d T_s} &= c_p \, \rho \, C_D \, |u|  = (1005\,\si{J.kg^{-1}.K^{-1}} \cdot 1.2 \, \si{kg.m^{-3}} \cdot \num{2e-3} \cdot 5\,\si{m.s^{-1}}) \\
+        &= 12.048 W\,\si{m^{-2}.K^{-1}} \\
+    \end{split}
+\end{equation}
+
+Equations \ref{q4_semis} and \ref{q4_sshf} are linearized approximations of the longwave surface emissivity and the sensible heat flux from the surface, respectively.
+Since both surface heat sinks are expressed in terms of only one variable, their derivative with respect to that variable is a scalar value that can be solved for directly,
+as shown in the equations. These results indicate that near the reference temperature $T_0 = 288\,\si{K}$, per Kelvin increase in surface temperature, the amount of heat lost to sensitive heat flux increases more than twice as fast as the amount of heat lost to longwave emission.
+
+\problem{4.5}{
+    Air with temperature $T_a = 27\,^\circ\si{C}$ moves across a dry parking lot with $|u|=5\,\si{m.s^{-1}}$.
+    Surface solar insolation is $S^\downarrow = 600\,\si{W.m^{-2}}$, and the surface downward longwave radiation is $F^\downarrow(0)=300\,\si{W.m^{-2}}$.
+    The longwave emissivity of the surface is $\epsilon_L = 0.85$, and the shortwave albedo is $\alpha_S = 0.1$.
+    \textbf{(1)} What is the surface temperature at radiative equilibrium?
+    \textbf{(2)} What is the surface temperature if the asphalt is instead concrete with $\alpha_S = 0.3$ (same $\epsilon_L$)?
+    The air density and drag coefficient are as in problem 3.
+    \textit{Hint:} Linearize the blackbody emission around the air temperature and use sfc energy to show (eq in text).
+    }% ANS: asphalt: 50.5 C , concrete: 43.5 C
+
+\begin{equation}\label{q5_linearize}
+    \epsilon\sigma T_s^4 \approx \epsilon\sigma T_a^4 + 4\sigma\epsilon T^3_a (T_s - T_a )
+\end{equation}
+
+\begin{equation}\label{q5_ebal}
+    \begin{split}
+        -\epsilon\sigma T_s^4 &= S_s^\downarrow (1-\alpha_s) + (1-\epsilon) F^\downarrow_s -  c_p\rho c_D u (T_s - T_a) \\
+        -\epsilon\sigma T_s^4 - 4\sigma\epsilon T^3_a (T_s - T_a )&=  S_s^\downarrow (1-\alpha_s) + (1-\epsilon) F^\downarrow_s -  c_p\rho c_D u (T_s - T_a) \\
+        (T_s - T_a )[c_p\rho C_D u - 4\sigma T^3_a \epsilon] &=  S_s^\downarrow (1-\alpha_s) + \epsilon (F^\downarrow_s - \sigma T_a^4) \\
+        T_s &=  \frac{S_s^\downarrow (1-\alpha_s) + \epsilon (F^\downarrow_s - \sigma T_a^4)}{[c_p\rho C_D u - 4\sigma T^3_a \epsilon]} + T_a
+    \end{split}
+\end{equation}
+
+Equation \ref{q5_linearize} shows the linearization approximation of surface emissivity in terms of surface temperature, and Equation \ref{q5_ebal}
+uses this approximation to solve the surface energy balance equation in terms of surface temperature $T_s$.
+
+\begin{equation}\label{q5_sol1}
+    \begin{split}
+        T_s &= \frac{600\,\si{W.m^{-2}}(1-.1)+0.85\,(300\,\si{K}-\sigma(300\,\si{K})^4)}{1005\,\si{J.kg^{-1}.K^{-1}}\cdot1.2\,\si{kg.m^{-3}}\cdot \num{2e-3} \cdot 5\,\si{m.s^{-1}} + 4\cdot .85\sigma\cdot(300\,\si{K})} + 300\,\si{K} \\
+        T_s &= 323.43\,\si{K}\text{ or } 50.434\,^\circ\si{C} \\
+    \end{split}
+\end{equation}
+
+\begin{equation}\label{q5_sol2}
+    \begin{split}
+        T_s &= \frac{600\,\si{W.m^{-2}}(1-.3)+0.85\,(300\,\si{K}-\sigma(300\,\si{K})^4)}{1005\,\si{J.kg^{-1}.K^{-1}}\cdot1.2\,\si{kg.m^{-3}}\cdot \num{2e-3} \cdot 5\,\si{m.s^{-1}} + 4\cdot .85\sigma\cdot(300\,\si{K})} + 300\,\si{K} \\
+        T_s &= 316.48\,\si{K}\text{ or } 43.48 \,^\circ\si{C} \\
+    \end{split}
+\end{equation}
+
+Solving for the only unknown, surface temperature, at both $\alpha_s = 0.1$ and $\alpha_s = 0.3$, we recieve the results reported in Equations \ref{q5_sol1} and \ref{q5_sol2}.
+The surface temperature is lower when the albedo is higher, which makes sense because the surface layer is absorbing a smaller fraction of incident insolation.
+
+
+\problem{4.6}{
+    \textbf{(1)} Do problem 4, but with a parking lot with the surrounding air at saturation, and including the effect of latent heat on the surface.
+    Ignore the effects of surface water on the albedo.
+    \textbf{(2)}Compare the surface temperature for wet and dry surfaces.
+    \textbf{(3)} How would the results differ if air wasn't saturated?
+    \textit{Hint:} Use Equation (4.34)
+    }% ANS: dry: 50.5 C , wet: 33 C with B_e = 0.25
+
+\begin{equation}\label{mix_ratio}
+    q^*(T) := \frac{.622 e_s}{P - e_s}
+\end{equation}
+
+\begin{equation}\label{bolton1980}
+    e_s(T) \approx 6.112\exp\left(\frac{17.67\,(T-273.15)}{T-29.65}\right)
+\end{equation}
+
+\begin{equation}\label{bowen}
+    B_e = \frac{c_p}{L} \left(\frac{\partial q^*}{\partial T} \right) |_{T=T_s}
+\end{equation}
+
+\begin{equation}\label{q6_sh}
+    \text{SH} = c_p \rho C_{DS} u (T_s - T_a)
+\end{equation}
+
+\begin{equation}\label{dq_dT}
+    \frac{\partial q^*}{\partial T} \approx q^*(T) \left(\frac{L}{R_vT^2}\right)
+\end{equation}
+
+\begin{equation}\label{q6_le}
+    \begin{split}
+        \text{LE} &= L\rho c_{DL} u (q_s - q_a) \\
+        &= L\rho c_{DL} u (q_s^*(T_s)(1-\text{RH})+\frac{c_p\,\text{RH}}{L\,B_e}(T_s-T_a)) \\
+        (\text{as RH }\to 1) \,\,\,\,\text{LE} &= L\rho C_{DL} u \frac{c_p(T_s-T_a)}{L\,B_e} \\
+    \end{split}
+\end{equation}
+
+Equation \ref{mix_ratio} shows the saturation mixing ratio in terms of the saturation vapor pressure, which is
+estimated empirically in Equation \ref{bolton1980}, which was adapted from (Bolton, 1980). Equation \ref{bowen} shows
+the equation for the equilibrium Bowen ratio.
+
+Equations \ref{q6_sh} and \ref{q6_le} show the energy equations for sensible and latent heat fluxes from the surface.
+Since we're considering a saturated atmosphere, the surface energy balance is:
+$0 = S_0^\downarrow (1-\alpha_s) + (1-\epsilon_s) F_s^\downarrow + \epsilon F_s^\uparrow - SH - LH$
+
+\begin{equation}\label{latent_ebal}
+    T_s = \frac{S_s^\downarrow (1-\alpha_s) + \epsilon (F^\downarrow_s - \sigma T_a^4)}{(c_p + \frac{dq^*}{dT}|_{T=T_s}) \rho C_D u - 4\sigma T^3_a \epsilon} + T_a
+\end{equation}
+
+Substituting this to the energy balance in Equation \ref{q5_ebal} to include the additional term for sensible heat, and making the assumption that the sensible and latent drag coefficients are equal yields Equation \ref{latent_ebal}
+
+\begin{equation}\label{q6_dry}
+    \begin{split}
+        T_s &= \frac{600(1-.1)+.85(300-300^4\sigma)}{(1005+0)\cdot1.2\cdot.002\cdot 5 + 4\sigma\,.85\cdot300^3} + 300\,\si{K} \\
+        %&= \frac{600(1-.1)+.85(300-300^4\sigma)}{(1005+\frac{dq^*}{dT}|_{T=T_s})\cdot1.2\cdot.002\cdot 5 + 4\sigma\,.85\cdot300^3} + 300\,\si{K} \\
+        &= 323.4\,\si{K} = 50.434\,^\circ\si{C}
+    \end{split}
+\end{equation}
+
+Using Equation \ref{latent_ebal} and the mixing ratio approximation \ref{dq_dT} for $T_s = 300K$ and $P_s = 1013.2\,\si{mb}$, and assuming a dry surface (zero mixing ratio), Equation \ref{q6_dry} shows that the equilibrium dry-surface temperature is about $50.434\,^\circ\si{C}$, which is the same as the answer received in the previous question since there is no increase in the rate of of heat loss from the latent energy of evaporation.
+
+\begin{equation}\label{q6_mr}
+    \frac{\partial q^*}{\partial T} \approx q^*(T) \left(\frac{L}{R_vT^2}\right) = \frac{e_s\,.622\cdot\num{2.5e6}}{(1013.2-e_s)(461.5\cdot300^2)} = 1.3656\,\si{K^{-1}}
+\end{equation}
+
+The rate of change in saturation mixing ratio is calculated with Equations \ref{mix_ratio}, \ref{bolton1980}, and \ref{dq_dT}, which enable us to use the energy balance represented by Equation \ref{latent_ebal} to calculate the surface temperature, as shown in Equation \ref{moist_stemp}.
+
+\begin{equation}\label{moist_stemp}
+    \begin{split}
+        T_s &= \frac{600(1-.1)+.85(300-300^4\sigma)}{(1005+\num{5.914e3})\cdot1.2\cdot.002\cdot 5 + 4\sigma\,.85\cdot300^3} + 300\,\si{K} \\
+        &= 306.95\,\si{K} = 33.948\,^\circ\si{C}
+    \end{split}
+\end{equation}
+
+If the air was unsaturated, the amount of evaporative cooling would increase proportionally in order to re-establish equilibrium, increasing the Bowen ratio. This has the effect of increasing the amount of latent energy, thus further decreasing the surface temperature.
+
+\end{document}

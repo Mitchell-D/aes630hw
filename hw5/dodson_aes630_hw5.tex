@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\graphicspath{{./figures}}
+
+\title{Physical Climatology (AES 630) Homework 5}
+\author{Mitchell Dodson}
+\date{October 23, 2023}
+
+\newcommand*{\problem}[2]{
+    \begin{table}[ht]
+    \centering
+        \begin{tabular}{ | p{.1\linewidth} p{.9\linewidth} | }
+            \hline
+            \vspace{.3em}\textbf{\large#1:} & \vspace{.3em}\small{#2}\hspace{.2em}\vspace{.5em} \\ \hline
+        \end{tabular}
+    \end{table}
+}
+
+\begin{document}
+
+\vspace{-2em}
+
+\maketitle
+
+\vspace{-2em}
+
+\problem{5.2}{
+    Use the bulk aerodynamic formula to calculate the evaporation rate from the ocean with $C_{DE} = 10^{-3}$, $U = 5\,\si{m.s^{-1}}$ and reference temperature such that $T_r = T_s - 2^\circ\si{C}$ for reference temperature $T_r$ and surface temperature $T_s$. Assume fixed air density $\rho_a = 1.2\,\si{kg.m^{-3}}$. How would you evaluate the importance of relative humidity versus surface temperature in determining the evaporation rate?
+}
+
+\begin{equation}\label{le_sat}
+    LE = \rho L C_{DE} U_r \left((1-RH) q^*(T_s) + RH \frac{c_p}{L} \frac{T_s - T_a}{B_e}\right)
+\end{equation}
+
+
+Equation \ref{le_sat} expresses the expanded form of the latent energy equation using the aerodynamic drag approximation over a saturated surface, in watts. In order to determine an evaporation rate per unit area, we must determine the mass of water per unit time removed by evaporation by dividing by the latent energy of vaporization, and the water depth per square meter corresponding to this mass.
+
+Since the density of water $\rho_w = 1,000\,\si{kg.m^{-3}}$, each kilogram of evaporation over a unit area corresponds to a $1\,\si{mm}$ depth. Thus the evaporation rate can be expressed as follows in Equation \ref{Erate}.
+
+\begin{equation}\label{Erate}
+    E = LE \cdot L_v^{-1} \cdot 86,400\,\si{s.day^{-1}} \cdot 1\,\si{mm.kg^{-1}}
+\end{equation}
+
+\begin{figure}[h!]\label{q1}
+    \centering
+    \begin{tabular}{ c c c | c c}
+        $T_s$ (K) & $q^*_s$ ($\si{g.kg^{-1}}$) & RH ($\%$) & LE ($\si{W}$)& E ($\si{mm.day^{-1}}$) \\
+        \hline
+        0 & 3.75 & 50 &  32.223 & 1.113 \\
+        0 & 3.75 & 100 & 8.175 & 0.282 \\
+        30 & 27 & 50 & 226.47 & 7.823 \\
+        30 & 27 & 100 & 47.784 & 1.651 \\
+    \end{tabular}
+\end{figure}
+
+The evaporation rate is proportional to the latent energy release by a constant factor. Equation \ref{le_sat} shows that when the reference-level relative humidity is high, the magnitude of latent energy depends more on the magnitude of the gradient in saturation mixing ratio between the surface and the reference level. In contrast, when the relative humidity is low, the absolute magnitude of the saturation mixing ratio at the surface $q^*(T_s)$ dominates.
+
+Therefore, the evaporation rate's dependence on surface temperature is modulated by the relative humidity at the reference height, such that when relative humidity is low the absolute magnitude of surface temperature contributes more, and when relative humidity is high the difference between the surface and reference level temperatures contributes more.
+
+\problem{5.3}{
+    Calculate the Bowen ratio using the bulk aerodynamic formula, for surface temperatures $0$, $15$, and $30^\circ\si{C}$, relative humidity $70\%$, and air-water temperature difference $\Delta T = 2^\circ\si{C}$. Assume heat and moisture transfer coefficients are the same.
+}
+
+\begin{equation}\label{Be}
+    B_e := \frac{c_p}{L} \left(\frac{\partial q^*}{\partial T}\right)^{-1} \vert_{T=T_s} \approx \frac{c_p}{L} \left(q^*_s\left(\frac{L}{R_vT_s^2}\right)\right)^{-1}
+\end{equation}
+
+\begin{equation}\label{Bo}
+    B_o = B_e \left(1-\frac{q^*_a - q_a}{q^*_s - q_a}\right)
+\end{equation}
+
+Equation \ref{Be} provides an an approximation for the equilibrium Bowen ratio $B_e$ over a saturated surface,  which can be used to approximate the actual Bowen ratio $B_o$ given an approximate reference-level mixing ratio $q_a$ by substituting it into Equation \ref{Bo}.
+
+\begin{equation}\label{es}
+    e_s(T) \approx 611.2\,\si{Pa} \cdot \exp\left[\frac{17.67(T-273.15\,\si{K})}{T-29.65\,\si{K}}\right]
+\end{equation}
+
+\begin{equation}\label{qs}
+    q^*(T,P) \approx \frac{e_s(T) \cdot .622}{P-e_s(T)}
+\end{equation}
+
+Equation \ref{es} is the empirical formula for saturation vapor pressure derived in (Bolton, 1980), which is used to estimate a saturation mixing ratio with Equation \ref{qs}, assuming standard pressure $P = 1013.2$.
+
+\begin{equation}\label{qsa}
+    q^*_a \approx q^*(T_s) + \frac{\partial q^*}{\partial T}
+\end{equation}
+
+\begin{equation}\label{qa}
+    q_a \approx RH \cdot q^*_a
+\end{equation}
+
+Equations \ref{qsa} and \ref{qa} are approximations for the saturation and actual mixing ratios at the reference level given a surface temperature, which are used to. By calculating $B_e$ and estimating the mixing ratio values with Equations \ref{es}-\ref{qa}, I used Equation \ref{Bo} to estimate the Bowen ratio at each of the temperatures, and obtained the results below.
+
+\begin{figure}[h!]\label{q2}
+    \centering
+    \begin{tabular}{ c c c | c c c}
+        $RH$ & $T_s$ & $T_a$ & $B_e$ & $q^*_a$ & $B_o$ \\
+        \hline
+        0.7 & 273.15 & 271.15 & 1.466 & 0.003 & 0.530 \\
+        0.7 & 288.15 & 286.15 & 0.579 & 0.009 & 0.193 \\
+        0.7 & 303.15 & 301.15 & 0.250 & 0.024 & 0.077 \\
+    \end{tabular}
+\end{figure}
+
+\end{document}

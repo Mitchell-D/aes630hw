@@ -1,0 +1,120 @@
+% Questions on PDF page 134
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{textcomp}
+
+\graphicspath{{./figures}}
+
+\title{Physical Climatology (AES 630) Homework 6 and 7}
+\author{Mitchell Dodson}
+\date{November 3, 2023}
+
+\newcommand*{\problem}[2]{
+    \begin{table}[ht]
+    \centering
+        \begin{tabular}{ | p{.1\linewidth} p{.9\linewidth} | }
+            \hline
+            \vspace{.3em}\textbf{\large#1:} & \vspace{.3em}\small{#2}\hspace{.2em}\vspace{.5em} \\ \hline
+        \end{tabular}
+    \end{table}
+}
+
+\begin{document}
+
+\maketitle
+
+\problem{6.4}{
+    Calculate the zonal velocity of an air parcel at the equator if it has conserved angular momentum while moving there, given that it was initially at rest relative to the surface at $20^\circ S$.
+} % -54 ms^-1 (Easterly)
+
+\begin{equation}\label{am}
+    M = (\Omega \, a \, \cos(\phi) + u) \, a \, \cos(\phi)
+\end{equation}
+
+Equation \ref{am} expresses the angular momentum of an air parcel at a particular latitude $\phi$, and with a zonal wind component $u$. As such, the initial stationary parcel at $20^\circ S$ has angular momentum $M_0 = \Omega \, a^2 \, \cos^2(-20^\circ)$, and the final parcel at the equator has angular momentum $M_f = (\Omega \, a + u) \, a$.
+
+\begin{equation}\label{q4}
+    \begin{split}
+        (\Omega \, a + u) \, a &= \Omega \, a^2 \, \cos^2(-20^\circ) \\
+        \Omega \, a + u &= \Omega \, a \, \cos^2(-20^\circ) \\
+        u &= \Omega \, a ( \cos^2(-20^\circ) - 1 ) \\
+        u &= \num{7.292e-5} \cdot \num{6.378e6} ( \cos^2(-20^\circ) - 1 ) \\
+        u &= -54.4 \,\si{m.s^{-1}}
+    \end{split}
+\end{equation}
+
+Invoking conservation of angular momentum by setting the initial and final momenta equal to each other, we find that the parcel's final zonal velocity when it arrives at the equator  is $u = -54.4 \,\si{m.s^{-1}}$, which corresponds to easterly flow, as demonstrated by Equation \ref{q4}.
+
+
+\problem{6.5}{
+    The tropical easterlies and mid-latitude westerlies occupy about the same surface area of Earth. Would you expect the surface westerly winds to be stronger, weaker, or about the same as the surface easterlies? Explain your answer with equations.
+} % More stress in mid-latitudes
+
+Assuming that the easterly and westerly winds' influence on Earth's and the Atmosphere's angular momentum is balanced so that no other factors have a net influence on Earth's angular momentum, the conservation of angular momentum implies that the west-acting torque exerted on the surface by the easterlies must be equal and opposite the east-acting torque of the westerlies.
+
+\begin{equation}\label{torque}
+    \text{\textsc{T}} = r \, F = (a \, \cos(\phi)) \, (A \, \tau_0) = (a \, \cos(\phi)) \, (A \,\rho \, C_D \, U^2) = U^2 \, \cos(\phi) \, (a \, A \, \rho \, C_D )
+\end{equation}
+
+Torque \textsc{T} is the product of a force with the length of the moment arm at which the force is applied, and the force of wind stress on the surface is the product of the average surface drag $\tau_0$ with the total area $A$ over which the drag is applied. From Chapter 4, the surface drag is proportional to the square of wind speed $U$, scaled by the air density $\rho$ and an aerodynamic drag coefficient $C_D$. Equation \ref{torque} expresses the torque exerted on Earth'surface by a wind flowing in one direction along a latitude line.
+
+\begin{equation}\label{tbal}
+    \text{\textsc{T}}_1 = \text{\textsc{T}}_2 = U_1^2 \, \cos(\phi_1) \, c = U_2^2 \, \cos(\phi_2) \, c
+\end{equation}
+
+Further assuming that Earth is a sphere, and that the air density and coefficient of drag are the same over the equal areas acted on by each wind, Equation \ref{tbal} shows the relationship that must remain True in order to maintain the momentum balance. The magnitude of $\cos(\phi)$ decreases from the tropics to the mid-latitudes, which implies that the wind speed $U$ must increase proportionally. Thus, the strength of westerly mid-latitude surface winds must be higher than that of the tropical easterlies.
+
+\problem{6.6}{
+    Estimate the rate at which air must subside over the Sahara in order to balance heat loss by radiation shown in Figure 2.11a. Approximate the vertical moist static energy gradient using that of potential energy, and use downward advection against the gradient to balance the radiative heat loss. For example, $w \frac{\partial(gz)}{\partial z} = R_{TOA} \times \left(\frac{P_s}{g}\right)^{-1}$
+} % w = -2e-4 ms^-1
+
+\begin{equation}\label{eout}
+    E_{out} = R_{TOA} \times \left(\frac{P_s}{g}\right)^{-1} \approx -25\,\si{W.m^{-2}}\,\left(\frac{9.8\,\si{m.s^{-2}}}{101,300\,\si{Pa}}\right) = \num{-2.419e-3} \,\si{W.kg^{-1}}
+\end{equation}
+
+Judging from the figure, the radiative heat loss of the Sahara is about $R_{TOA} \approx 25\,\si{W.m^{-2}}$. Following the methodology in the prompt, this value can be normalized with atmospheric air mass to obtain the energy loss per kilogram of air in the atmospheric column, as Equation \ref{eout} demonstrates.
+
+\begin{equation}\label{eadv}
+    E_{adv} = w \frac{\partial (gz)}{\partial z} \approx w\,g
+\end{equation}
+
+\begin{equation}\label{q3}
+    E_{adv} = E_{out} \Rightarrow w  = \frac{E_{out}}{g} = \frac{\num{-2.419e-3}\,\si{W.kg^{-1}}}{9.8\,\si{m.s^{-2}}} = \num{-2.468e-4}\,\si{m.s^{-2}}
+\end{equation}
+
+Equation \ref{eadv} uses the advection equation to model the exchange of potential energy that a parcel vertically forced at velocity $w$ would experience, assuming that the gravitational constant is approximately constant within the troposphere. This assumption is approximately $99.38\%$ accurate for a tropospheric height of $20\,\si{km}$. Given energy balance between the downward advection and radiative heat loss, this implies a downdraft speed of approximately $\num{-2.468e-4}\,\si{m.s^{-2}}$, as Equation \ref{q3} shows.
+
+%Equation \ref{mse} is the moist static energy of a parcel of air. In the context of the Sahara desert, the latent energy from moisture condensation is negligible.
+
+\clearpage
+
+\problem{7.5}{
+    Use Fig. 7.1 to estimate the initial and final density values of a kilogram of water that starts in the tropics at $28^\circ C$ with a salinity of $35$\textperthousand, and flows on the surface in the Gulf Stream to the Norwegian Sea, where it arrives with a temperature of $-1^\circ C$. Assume the water conserves its salinity en route and loses heat via sensible heat transfer.
+} % rho_t = 22.5 becomes rho_t = 28.2
+
+Based on Figure 7.1, the initial density anomaly of water with initial temperature $T_0 = 28^\circ C$ and salinity $35$\textperthousand \, is around $\delta \rho_0 = 23 \,\si{kg.m^{-3}}$. Following the $35$\textperthousand \, isohaline as the temperature decreases to $T_f = -1^\circ C$, the density anomaly increases to about $\delta \rho_f = 28.1\, \si{kg.m^{-3}}$. Therefore, the actual initial and final densities in terms of the standard density of water $\rho_w = 1000\,\si{kg.m^{-3}}$ are as follows:
+
+\begin{equation}
+    \begin{split}
+        \rho_0 &= \rho_w + \delta \rho_0 = 1023\,\si{kg.m^{-3}} \\
+        \rho_f &= \rho_w + \delta \rho_f = 1028.1\,\si{kg.m^{-3}} \\
+    \end{split}
+\end{equation}
+
+
+\end{document}
+
+\begin{figure}[h!]\label{q1q2}
+    \centering
+    \begin{tabular}{ c c c | c}
+    \end{tabular}
+\end{figure}
+
