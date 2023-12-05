@@ -99,14 +99,51 @@ Equation \ref{sb2} characterizes the change in the planet's radiant exitance wit
 
 \vspace{2em}\noindent\textbf{Part B}
 
-\begin{equation}
+\begin{equation}\label{q2b1}
     \sigma T_e^4 = \sigma T_a^4 = \frac{S_0}{4}(1-\alpha_p)
 \end{equation}
 
-In a planetary system with a single thermally-opaque atmospheric layer,
-
-\begin{equation}
+\begin{equation}\label{q2b2}
+    \sigma T_e^4 = \sigma T_a^4 = \frac{S_0}{4}(1-\alpha_p)
 \end{equation}
+
+In a planetary system with a single thermally-opaque atmospheric layer, the equilibrium emissive power of the planet equals that of the atmospheric layer, as Equation \ref{q2b1} shows.
+
+\begin{equation}\label{q2b3}
+    \begin{split}
+        \sigma T_s^4 &= \sigma T_a^4 + C = \frac{S_0}{4}(1-\alpha_p) \\
+        S_0 &= \frac{4(\sigma T_s^4 - c)}{1-\alpha_p} \\
+        \frac{S_0}{dT_s} &= \frac{16\sigma}{1-\alpha_p}T_s^3 = \\
+        \lambda &= \frac{dT_s}{S_0} = \frac{16\sigma}{1-\alpha_p}T_s^3 \\
+    \end{split}
+\end{equation}
+
+
+
+\section{Tropical SST}
+
+\begin{figure}[h!]\label{seaflux}
+    \centering
+    \makebox[\textwidth]{
+        \includegraphics[width=.55\linewidth]{q3a.png}
+        \includegraphics[width=.55\linewidth]{q3b.png}
+    }
+    \caption{Magnitude of relevant energy fluxes leaving the tropical ocean surface given bulk approximations. Includes approximations with a wind speed $V = 5\,\si{m.s^{-1}}$ and atmospheric water vapor mixing ratio $q_a = 15\,\si{g.kg^{-1}}$ (left) and with wind speed $V = 7 \,\si{m.s^{-1}}$ and relative humidity $RH=64\%$.}
+\end{figure}
+
+Figure \ref{seaflux} displays the contributions of several fluxes from the tropical ocean, such that positive values correspond to a net energy loss from the ocean. The entire system consists of insolation absorbed by the ocean surface, net longwave back radiation between outgoing and incoming emissions, sensible heat fluxes from eddies (proportional to the difference in ocean and atmospheric temperature), and latent heat fluxes also from eddies (proportional to the difference in mixing ratio).
+
+Although the energy contributed by solar irradiance isn't included in the flux diagrams of Figure \ref{seaflux}, it is by far the most substantial source of energy to the ocean surface which is offset by the other fluxes. The absorbed insolation assuming that there are no reflecting species in the atmospheric column is epproximately $F^\downarrow_{abs} = Q_{TOA} \cdot (1-a_{a}) \cdot (1-\alpha_o) = 412\,\si{W.m^{-2}} \cdot (1-0.1) \cdot (1-0.08) = 341.136\,\si{W.m^{-2}}$, where $a_a$ is the shortwave atmospheric absorptivity and $\alpha_o$ is the shortwave ocean albedo.
+
+The latent (moisture) flux starts small (and slightly negative) when the ocean surface is $20\,\si{^\circ C}$ because the sea surface mixing ratio is slightly lower than the atmospheric mixing ratio, but outgoing moisture flux increases rapidly with the surface temperature because of enhanced evaporation rates associated with the warmer water, and the gradual reduction in relative humidity with respect to the constant atmospheric mixing ratio $q_a=15\,\si{g.kg^{-1}}$.
+
+The radiative heat loss is a net loss for the ocean, and slightly increases in magnitude from $57.3\,\si{W.m^{-2}}$ to $69.1\,\si{W.m^{-2}}$ in the observed temperature range. The change is due to the emissive power of the ocean increasing as its temperature does per the Stefan-Boltzmann law. Nonetheless, the magnitude of this change is rather small because increases in outgoing radiant exitance from the ocean are somewhat offset by enhanced thermal re-emission by the atmosphere.
+
+Finally, the sensible heat flux is proportional to the difference between the atmosphere and ocean temperature, so it only becomes positive once the ocean temperature exceeds the atmospheric temperature at $28\,\si{^\circ C}$. This phenomena corresponds to the rebalancing of thermal energy between adjacent surfaces by conduction through mixing, driven by vertical eddies.
+
+In total, the net flux from the ocean becomes positive (outgoing) at a surface temperature of about $30\,\si{^\circ C}$, as indicated by the red line in Figure \ref{seaflux}. At this point, all of the fluxes except for incoming solar energy serve to remove energy from the ocean. Moreover, the magnitude of insolation was calculated with the assumption that there are no reflective species like clouds or aerosols in the atmosphere. Since an increase in atmospheric column albedo would have a net cooling effect, we can comfortably conclude that the sea surface is unlikely to receive enough energy to bring its temperature far past this $30\,\si{^\circ C}$ mark under normal circumstances.
+
+The right-side image in Figure \ref{seaflux} demonstrates the changes in the energy system due to an increase in wind speed from $5\,\si{m.s^{-1}}$ to $7\,\si{m.s^{-1}}$, and a fixed relative humidity of $RH=64\%$ rather than a fixed mixing ratio (as was the case in the previous problem). The most notable change is a considerable increase in the initial outoing flux due to latent energy of moisture evaporation. Rather than being small and slightly negative initially, the fixed relative humidity means the atmospheric mixing ratio at $28\,\si{^\circ C}$ is less than the sea-surface mixing ratio, which promotes evaporation rather than condensation. Furthermore, the increase in wind speed enhances eddie mixing, increasing the rate at which water can evaporate from the surface. The turbulance introduced by the quicker wind speeds also causes more thermal mixing, which increases the sensitivity of sensible heat flux to changes in the temperature difference between the ocean and air (increasing the slope of the flux response). Finally, the additional presence atmospheric water vapor modifies the longwave radiative heat loss by slightly increasing the power of emissions incident on the surface from the atmosphere. The net effect is to decrease the temperature at which the net effect of the fluxes becomes positive, which implies that the stable relative humidity and increased wind speed will tend to decrease the equilibrium temperature of the ocean surface.
 
 \end{document}
 
